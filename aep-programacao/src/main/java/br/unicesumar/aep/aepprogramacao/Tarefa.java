@@ -1,8 +1,13 @@
 package br.unicesumar.aep.aepprogramacao;
 
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Date;
+
 
 @Entity
 public class Tarefa {
@@ -11,12 +16,12 @@ public class Tarefa {
 	@Id
 	@GeneratedValue
 	
-	private int id; 
+	private long id; 
 	private String descricao; 
-	private String dataCriacao; 
+	private Date datacriacao; 
 	private Status situacao; 
 	private String responsavel; 
-	private float horasEstimadas;
+	private String horasestimadas;
 
 	public enum Status {
 		NAO_INICIADO,
@@ -29,11 +34,11 @@ public class Tarefa {
 		
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -45,12 +50,12 @@ public class Tarefa {
 		this.descricao = descricao;
 	}
 
-	public String getDataCriacao() {
-		return dataCriacao;
+	public Date getDataCriacao() {
+		return datacriacao;
 	}
 
-	public void setDataCriacao(String dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setDataCriacao(Date datacriacao) {
+		this.datacriacao = datacriacao;
 	}
 
 	public Status getSituacao() {
@@ -69,12 +74,12 @@ public class Tarefa {
 		this.responsavel = responsavel;
 	}
 
-	public float getHorasEstimadas() {
-		return horasEstimadas;
+	public String getHorasEstimadas() {
+		return horasestimadas;
 	}
 
-	public void setHorasEstimadas(float horasEstimadas) {
-		this.horasEstimadas = horasEstimadas;
+	public void setHorasEstimadas(String horasestimadas) {
+		this.horasestimadas = horasestimadas;
 	}
 	
 	
