@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,14 +22,15 @@ public class Tarefas {
 	private TarefaRepository tarefaRepository;
 	private TarefaRepository studentRepository;
 	
+	
 	@GetMapping("/tarefas")
 	public List<Tarefa> consultaTarefa() {
 		return tarefaRepository.findAll();
 	}
 	
 	
-	@GetMapping("/tarefas/{id}")
-	public Tarefa consultaTarefa (@PathVariable long id) {
+	@GetMapping("/tarefas/{id}/{descricao}")
+	public Tarefa consultaTarefa (@PathVariable Integer id) {
 		Optional<Tarefa> tarefa = tarefaRepository.findById(id);
 		
 		if (!tarefa.isPresent())
@@ -36,6 +39,8 @@ public class Tarefas {
 		return tarefa.get();
 	}
 	
+	
+	@RequestMapping(value = "/tarefas/{id}", produces = "application/json", method = {RequestMethod.POST})
 	@PostMapping("/tarefas/{id}")
 	public Tarefa createTarefa (@RequestBody Tarefa tarefa) {
 		Optional<Tarefa> novaTarefa = tarefaRepository.findById(tarefa.getId());
@@ -47,8 +52,9 @@ public class Tarefas {
 		return tarefa;
 	}
 	
-	@PutMapping("/tarefa/{id}")
-	public ResponseEntity<Object> updateTarefa(@RequestBody Tarefa tarefa, @PathVariable long id) {
+	@RequestMapping(value = "/tarefas/{descricao}", produces = "application/json", method = {RequestMethod.PUT})
+	@PutMapping("/tarefas/{descricao}")
+	public ResponseEntity<Object> updateTarefa(@RequestBody Tarefa tarefa, @PathVariable Integer id) {
 		
 		Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
 		
@@ -65,5 +71,4 @@ public class Tarefas {
 	public void studentDelete(@PathVariable long id) {
 		studentRepository.deleteById(id);
 	}
-	
 }
