@@ -16,7 +16,7 @@ public class Tarefa {
 	@Id
 	@GeneratedValue
 	
-	private long id; 
+	private Integer id; 
 	private String descricao; 
 	private Date datacriacao; 
 	private Status situacao; 
@@ -30,15 +30,25 @@ public class Tarefa {
 		BLOQUEADA;
 	}
 	
+	public Tarefa(Integer id, String descricao, Date datacriacao, Status situacao, String responsavel, String horasestimadas) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.datacriacao = datacriacao;
+		this.situacao = situacao;
+		this.responsavel = responsavel;
+		this.horasestimadas = horasestimadas;
+	}
+	
 	public Tarefa() {
 		
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
